@@ -27,9 +27,9 @@ export class IngredientService {
     this.userID = this.authService.getUser().id;
 
     this.jsonConvert = new JsonConvert();
-    this.jsonConvert.operationMode = OperationMode.LOGGING; // print some debug data
-    this.jsonConvert.ignorePrimitiveChecks = false; // don't allow assigning number to string etc.
-    this.jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
+//    this.jsonConvert.operationMode = OperationMode.LOGGING; // print some debug data
+//    this.jsonConvert.ignorePrimitiveChecks = false; // don't allow assigning number to string etc.
+//    this.jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
   }
 
   // GET /ingredients <-- get all ingredients

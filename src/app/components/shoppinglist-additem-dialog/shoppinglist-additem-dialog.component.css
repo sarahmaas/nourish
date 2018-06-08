@@ -1,0 +1,31 @@
+#mat-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.mat-dialog-title {
+    margin: 0 auto;
+}
+
+#mat-dialog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+form {
+    margin: 10px;
+}
+
+button {
+    color: white;
+    background-color: #B8AEB8;
+}
+
+button:hover, button:focus {
+    color: white;
+    background-color: #807980;
+}

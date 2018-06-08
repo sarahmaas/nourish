@@ -1,56 +1,80 @@
+<div layout="vertical">
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #snav mode="side" opened="true" class="meal-plan-sidenav">      
 
-<div class="container">
-<mat-card>
-  <mat-card-content>
-    <h2 class="example-h2">Weekly Meal Plan </h2>
-    <mat-tab-group class="demo-tab-group">
-      <mat-tab label="Monday">
-        <div class="demo-tab-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
-          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
-          orci enim rutrum enim, vel tempor sapien arcu a tellus.
-        </div>
-      </mat-tab>
-      <mat-tab label="Tuesday">
-        <div class="demo-tab-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
-          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
-          orci enim rutrum enim, vel tempor sapien arcu a tellus.
-        </div>  
-      </mat-tab>
-      <mat-tab label="Wednesday" disabled>
-        No content  
-      </mat-tab>
-      <mat-tab label="Thursday">
-        <div class="demo-tab-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
-          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
-          orci enim rutrum enim, vel tempor sapien arcu a tellus.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
-          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
-          orci enim rutrum enim, vel tempor sapien arcu a tellus.
-        </div>  
-      </mat-tab>
-      <mat-tab label="Friday">
-        No content  
-      </mat-tab>
-      <mat-tab label="Saturday">
-        No content  
-      </mat-tab>
-       <mat-tab label="Sunday">
-        No content  
-      </mat-tab>
-    </mat-tab-group>
-  </mat-card-content>
-</mat-card>
+    <h1 class="text-left dark-heading">Meal Plans</h1>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <ng-container *ngFor="let meal_plan of meal_plans">
+       <mat-list-item (click)="this.selectMealPlan(meal_plan)" role="listitem">
+          {{meal_plan.name}}
+        </mat-list-item>
+      </ng-container>
+    </mat-nav-list>
+
+    <form [formGroup]="mpForm" 
+           id="new-mp-form" 
+           (ngSubmit)="this.addMealPlan(mpForm)">  
+      <mat-form-field class="full-width">
+        <input placeholder="New Meal Plan" matInput formControlName="new_mealplan">
+      </mat-form-field>
+  
+      <button [disabled]="!mpForm.valid" mat-button cdkFocusInitial class="btn btn-light btn-block mb-3">Add</button>
+    </form>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="meal-plan-content">
+
+    <div *ngIf="selected_mp">
+      <mat-card class="meal-plan-card">
+        <mat-card-content>
+          <div class="mealtitle heading">
+              
+            <h1>{{selected_mp.name}}
+              <small>
+                <button (click)="deleteMealPlan(selected_mp)" class="delete float-right btn btn-dark btn-sm">Delete</button>
+              </small>
+            </h1>
+             
+          </div>
+
+          <mat-tab-group class="tab-group" *ngIf="selected_mp.meal_plan_recipes_attributes">
+              
+            <!-- find all meals for each day -->
+            <div *ngFor="let day of constants.mealPlanDays">
+              <mat-tab label="{{day | titleCase}}">
+                <div class="demo-tab-content">
+
+                  <div class="meal" *ngFor="let meal of this.findMealsForDay(selected_mp, day)">
+                      
+                    <ul class="list-unstyled">                     
+                      <li class="card card-body mb-2">
+                        <h2 class="text-center subheading">{{meal.meal | titleCase}}:</h2>
+                        <mat-divider [inset]="true"></mat-divider>
+                      
+                        <app-recipe [id]="meal.recipe_id"></app-recipe>
+               
+                        <small><button (click)="deleteMeal(selected_mp, meal)" class="btn btn-dark btn-block mb-3">Remove</button></small>
+                           
+                      </li>        
+                    </ul>
+                     
+                  </div>
+
+                  <button [disabled]="!areMealsLeft(day)" (click)="openDialog(selected_mp, day)" class="btn btn-light btn-block mb-3">Add Meal</button>
+
+                </div>
+              </mat-tab>
+            </div>
+            
+          </mat-tab-group>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
 </div>
+ 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Angular2TokenService} from "angular2-token";
 import {environment} from "../environments/environment";
 import { BrowserModule } from '@angular/platform-browser'; 
+import {MaterializeAction} from 'angular2-materialize';
 
 @Component({
   selector: 'app-root',

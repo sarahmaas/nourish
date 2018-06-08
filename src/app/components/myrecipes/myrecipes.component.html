@@ -1,12 +1,13 @@
-<h2> My Recipes</h2>
+<h2 class="heading"> My Recipes</h2>
 
-<a [routerLink]="['/create']"><button [disabled]="!enableAdd" class="btn btn-light btn-block mb-3">
+<a [routerLink]="['/create']"><button class="btn btn-light btn-block mb-3">
 Create New Recipe
 </button></a>
 <ul class="list-unstyled" *ngIf="recipes.length > 0">
     <li class="card card-body mb-2" *ngFor="let recipe of recipes"> 
     <h4> {{recipe.title}}
     <small> <button (click)="recipe.hide = !recipe.hide" class="btn btn-dark btn-sm"> <i [ngClass]="recipe.hide ? 'fa fa-plus' : 'fa fa-minus'"></i></button></small>
+     <button type="submit"  class="waves-effect waves-light btn #B8AEB8 right"> Add to My Recipes </button>
     </h4>
         <ul class="list-group"  *ngIf="!recipe.hide"> 
             <li class="list-group-item"> {{recipe.summary}}</li>

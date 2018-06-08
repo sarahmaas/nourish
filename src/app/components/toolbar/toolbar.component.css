@@ -1,0 +1,24 @@
+.nav-wrapper {
+    background-color: #D78FA3;
+}
+
+/deep/ .mat-menu-content {
+  background-color: #C3CEE4;
+}
+
+button.mat-button {
+    background-color: #D78FA3;
+}
+
+button.mat-button:hover{
+    background-color: #C3CEE4;
+}
+
+button.mat-menu-item{
+    background-color: #C3CEE4;
+}
+
+button.mat-menu-item:hover {
+    background-color: #B8AEB8;
+    color: #99CCCC !important;
+}

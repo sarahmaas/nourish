@@ -18,16 +18,9 @@ export class RecipeService {
   private userID: number;
   private jsonConvert: JsonConvert;
 
-  constructor(private authTokenService: Angular2TokenService) { 
-
-    console.log('RecipeService constructed:');
-    console.log(this.authTokenService.currentUserData);
+  constructor(private authTokenService: Angular2TokenService) {
     this.userID = this.authTokenService.currentUserData.id;
-    
     this.jsonConvert = new JsonConvert();
-    this.jsonConvert.operationMode = OperationMode.LOGGING; // print some debug data
-    this.jsonConvert.ignorePrimitiveChecks = false; // don't allow assigning number to string etc.
-    this.jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
 
   }
 
@@ -41,7 +34,7 @@ export class RecipeService {
 
   // GET /users/:user_id/recipes/:id
   public getUserRecipeById(recipeID: number) {
-    return this.authTokenService.get('/users/' + this.userID + '/recipes/' + recipeID)
+    return this.authTokenService.get('/recipes/' + recipeID)
     .map(
       res => {
         let recipe: Recipe;
@@ -82,7 +75,7 @@ export class RecipeService {
   //   ).catch(this.handleError);
   // }
 
-  // DELETE /recipes/:id 
+  // DELETE /recipes/:id
   public deleteRecipe(recipeID: number): Observable<null> {
     return this.authTokenService.delete('/recipes/' + recipeID)
     .map(res => null)

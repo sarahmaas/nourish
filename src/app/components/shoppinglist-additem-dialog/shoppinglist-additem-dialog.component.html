@@ -1,0 +1,35 @@
+
+<div mat-dialog-content>
+
+  <div id="mat-dialog-header">
+    <h1 mat-dialog-title class="heading">Add Item to Shopping List</h1>
+  </div>
+
+  <form novalidate id="sl-item-add-form" (ngSubmit)="this.onSubmit()" [formGroup]="list_item"> 
+    <div id="form-container">
+
+     <mat-form-field class="full-width">
+        <input placeholder="Enter Ingredient to Add" matInput [matAutocomplete]="autoingredient" formControlName="ingredient">
+        <mat-autocomplete #autoingredient="matAutocomplete" [displayWith]="ingredientDisplayFunc">
+          <mat-option *ngFor="let ingredient of filteredIngredients | async" [value]="ingredient">{{ ingredient.name | titleCase }}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input placeholder="Enter Unit of Measure" matInput [matAutocomplete]="automeasure" formControlName="measure">
+        <mat-autocomplete #automeasure="matAutocomplete" [displayWith]="measureDisplayFunc">
+          <mat-option *ngFor="let measure of filteredMeasures | async" [value]="measure">{{ measure.name | titleCase }}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+          <input type="number" placeholder="Enter an Amount" matInput formControlName="amount">
+      </mat-form-field>
+
+    </div>
+  </form>
+  <div id="mat-dialog-footer">
+    <button mat-button (click)="closeDialog()" class="btn btn-light mb-3">Cancel</button>
+    <button [disabled]="list_item.invalid" form="sl-item-add-form" mat-button cdkFocusInitial class="btn btn-light mb-3">Add to List</button>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div mat-dialog-content>
+
+  <div id="mat-dialog-header">
+    <h1 mat-dialog-title class="heading">Update Shopping List Item</h1>
+  </div>
+
+  <form novalidate id="sl-item-add-form" (ngSubmit)="this.onSubmit()"> 
+    <div id="form-container">
+
+      <ul>
+        <li>Ingredient: {{data.ingredient.name | titleCase}}</li>
+        <li>
+          <mat-form-field class="full-width">
+            <div id="amount-display">
+              <input type="number" placeholder="Enter an Amount" matInput [formControl]="amount">
+              <p id="amount-measure">{{data.measure.name | titleCase}}</p>
+            </div>
+          </mat-form-field>
+        </li>
+      </ul>
+
+    </div>
+  </form>
+  <div id="mat-dialog-footer">
+    <button mat-button (click)="closeDialog()" class="btn btn-light mb-3">Cancel</button>
+    <button [disabled]="amount.invalid" form="sl-item-add-form" mat-button cdkFocusInitial class="btn btn-light mb-3">Update Amount</button>
+  </div>
+</div>

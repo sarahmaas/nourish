@@ -10,9 +10,4 @@ export class DietaryRestriction {
   @JsonProperty('name', String)
   name: string = undefined;
 
-/*
-  constructor(values: Object = {}) {
-    Object.assign(this, values);
-  }
-*/ 
 }

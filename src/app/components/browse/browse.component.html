@@ -1,9 +1,9 @@
- <h2> Browse Recipes</h2>
+ <h2 class="heading"> Browse Recipes</h2>
 <ul class="list-unstyled" *ngIf="recipes.length > 0">
     <li class="card card-body mb-2" *ngFor="let recipe of recipes"> 
     <h4> {{recipe.title}}
     <small> <button (click)="recipe.hide = !recipe.hide" class="btn btn-dark btn-sm"> <i [ngClass]="recipe.hide ? 'fa fa-plus' : 'fa fa-minus'"></i></button></small>
-     <button type="submit"  class="waves-effect waves-light btn blue right"> Add to My Recipes </button>
+     <!-- <button type="submit"  class="waves-effect waves-light btn right"> Add to My Recipes </button> -->
     </h4>
         <ul class="list-group"  *ngIf="!recipe.hide"> 
             <li class="list-group-item"> {{recipe.summary}}</li>
@@ -15,16 +15,7 @@
     </li>
 </ul>
 
+
+
 <h4 *ngIf="recipes.length == 0"> No recipes to display!</h4> 
 
-<!--
-<div class="card">
-    <h1> Recipes </h1>
-    <ng-container *ngFor="let recipe of data"> 
-        <h1> {{recipe.title}}</h1>
-        <h2> {{recipe.summary }} </h2>
-        <h3> {{recipe.instructions}}</h3>
-        <h3> {{recipe.ingredient_recipes}}</h3>
-    </ng-container>
-</div>
---> 

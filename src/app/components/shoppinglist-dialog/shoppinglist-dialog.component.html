@@ -1,0 +1,22 @@
+<h1 mat-dialog-title class="heading">Create New Shopping List</h1>
+<div mat-dialog-content>
+
+  <form novalidate id="sl-create-form" (ngSubmit)="this.onSubmit()" [formGroup]="shopping_list"> 
+    <div id="form-container">
+      <mat-form-field class="full-width">
+        <input placeholder="Enter a Name" matInput formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input placeholder="Choose A Meal Plan" matInput [matAutocomplete]="auto" formControlName="meal_plan">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunc">
+          <mat-option *ngFor="let meal_plan of filteredMealPlans | async" [value]="meal_plan">{{ meal_plan.name | titleCase }}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <button mat-button (click)="onClose()" class="btn btn-light mb-3">Cancel</button>
+  <button [disabled]="shopping_list.invalid" form="sl-create-form" mat-button cdkFocusInitial class="btn btn-light mb-3">Create</button>
+
+</div>

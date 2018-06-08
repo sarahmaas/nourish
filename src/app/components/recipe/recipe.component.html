@@ -1,8 +1,23 @@
-<div id="header">
-	<h2> Browse Recipes</h2>
-</div> 
-<h4> {{recipe.recipeName}}</h4>
-<ul> 
-	<li> {{recipe.ingredients}}</li>
-	<li> {{recipe.steps}}</li> 
-</ul>
+ <div *ngIf="recipe">
+	<h1> {{recipe.title | titleCase}}
+		<small><button (click)="hide = !hide" class="float-right btn btn-dark btn-sm"> <i [ngClass]="hide ? 'fa fa-plus' : 'fa fa-minus'"></i></button></small>
+	</h1>
+
+	<ul class="borderless list-group" *ngIf="!hide"> 
+		<div class="recipe-card">
+			<h2>Summary:</h2>
+				
+				<li class="list-group-item">{{recipe.summary}}</li>
+					
+				<ul class="borderless list-group" *ngIf="recipe.ingredient_recipes">
+					<h2>Ingredients:</h2>
+					<li class="list-group-item" *ngFor="let item of recipe.ingredient_recipes"> {{item.amount}} {{item.measure.name}} {{item.ingredient.name | titleCase}} </li>
+				</ul>
+		
+				<h2>Instructions:</h2>
+				<li class="list-group-item"> {{recipe.instructions}}</li> 
+			</div>
+		</ul>
+	
+
+</div>

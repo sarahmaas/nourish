@@ -1,0 +1,14 @@
+<div id="list-item-container" [style.background]="background_color" [style.color] = "list_item.purchased ? 'white' : 'black'" >
+
+  <h2>{{list_item.amount}} {{list_item.measure.name}} {{list_item.ingredient.name | titleCase}}</h2>
+ 
+  <div id="button-container" *ngIf="!(list_item.purchased); else remove">
+    <button (click)="itemPurchased()" class="float-right btn btn-light mb-3">Purchased</button>
+    <button (click)="activateAdjustAmountDialog()" class="float-right btn btn-light mb-3">Change Amount</button>
+  </div>
+
+  <ng-template #remove>
+    <button (click)="itemRemoved()" class="float-right btn btn-light mb-3">Remove</button>
+  </ng-template>
+   
+</div>

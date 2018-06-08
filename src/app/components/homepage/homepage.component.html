@@ -1,12 +1,17 @@
 <div class="row">
   <div class="col s12">
-    <h1> Welcome</h1>
-    <p>
-     Welcome to Nourish. 
+    <h3 class="heading">
+     Welcome to Nourish
+     </h3> 
+     <div class="hero-image">
+        <div class="hero-text">
+            <app-carousel> </app-carousel>
+         </div>
+    </div>
      
       <div *ngIf="(authService.userSignedIn$ | async)">
-        <p> You are signed in!</p> 
+   
       </div>
-
+      
   </div>
 </div>

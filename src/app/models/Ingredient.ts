@@ -1,4 +1,4 @@
-import {JsonObject, JsonProperty} from "json2typescript";
+import {JsonObject, JsonProperty} from 'json2typescript';
 import { IngredientCategory } from './IngredientCategory';
 
 @JsonObject
@@ -13,11 +13,5 @@ export class Ingredient {
   ingredient_category: IngredientCategory;
 
   get id() { return this._id; }
-
-  /*
-  constructor(values: Object = {}) {
-    Object.assign(this, values);
-  }
-*/
 
 }

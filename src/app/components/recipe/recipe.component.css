@@ -1,0 +1,36 @@
+.borderless li {
+    border: none;
+}
+
+h1 {
+    font-size: 18pt;
+}
+
+h2 {
+    font-size: 14pt;
+    padding-bottom: 0px;
+}
+
+ul {
+    padding: 3px;
+}
+
+li {
+    padding: 3px;
+}
+
+button {
+    color: white;
+    background-color: #B8AEB8;
+}
+
+button:hover, button:focus {
+    color: white;
+    background-color: #807980;
+}
+
+.recipe-card {
+    padding-left: 15px;
+    padding-bottom: 15px;
+    background-color: white;
+}

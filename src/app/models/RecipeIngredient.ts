@@ -6,6 +6,9 @@ import { Ingredient } from './Ingredient';
 @JsonObject
 export class RecipeIngredient {
 
+  @JsonProperty('id', Number)
+  id: number = undefined;
+
   @JsonProperty('amount', Number)
   amount: number = undefined;
 
@@ -14,5 +17,5 @@ export class RecipeIngredient {
 
   @JsonProperty('ingredient', Ingredient)
   ingredient: Ingredient = undefined;
-  
+
 }

@@ -2,3 +2,35 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+
+button {
+  color: white;
+  background-color: #B8AEB8;
+}
+
+button:hover, button:focus {
+  color: white;
+  background-color: #807980;
+}
+
+.heading {
+  color: #99CCCC;
+  /* text-shadow: 1px 1px 20px #888888; */
+  /* color: #242A33; */
+}
+
+.dark-heading {
+  color: #6b8e8e;
+  /* text-shadow: 5px 5px 20px #888888; */
+}
+
+.subheading {
+  color: #242A33;
+  font-style: italic;
+  /* text-shadow: 2px 2px 20px #888888; */
+}
+
+.card {
+  background-color: #e0efef;
+}

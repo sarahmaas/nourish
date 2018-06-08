@@ -2,79 +2,82 @@
 
 
   <div class="row">
-
-    <div class="input-field col s12">
-      <input id="nickname"
-             type="text"
-             required
-             name='nickname'
-             [(ngModel)]="signUpUser.nickname"
-             class="validate">
-      <label for="nickname">Nickname</label>
+    <div>
+      <div class="input-field col s12">
+        <input id="nickname"
+              type="text"
+              required
+              name='nickname'
+              [(ngModel)]="signUpUser.nickname"
+              class="validate">
+        <label for="nickname">Nickname</label>
+      </div>
     </div>
-
-    <div class="input-field col s12">
-      <input id="first_name"
-             type="text"
-             required
-             name='first_name'
-             [(ngModel)]="signUpUser.first_name"
-             class="validate">
-      <label for="first_name">First Name</label>
+    <div>
+      <div class="input-field col s12">
+        <input id="first_name"
+               type="text"
+               required
+               name='first_name'
+               [(ngModel)]="signUpUser.first_name"
+               class="validate">
+        <label for="first_name">First Name</label>
+      </div>
     </div>
-
-    <div class="input-field col s12">
-      <input id="last_name"
-             type="text"
-             required
-             name='last_name'
-             [(ngModel)]="signUpUser.last_name"
-             class="validate">
-      <label for="last_name">Last Name</label>
+    <div>
+      <div class="input-field col s12">
+        <input id="last_name"
+               type="text"
+               required
+               name='last_name'
+               [(ngModel)]="signUpUser.last_name"
+               class="validate">
+        <label for="last_name">Last Name</label>
+      </div>
     </div>
-
-    <div class="input-field col s12">
-      <input id="default_servings"
-             type="text"
-             required
-             name='default_servings'
-             [(ngModel)]="signUpUser.default_servings"
-             class="validate">
-      <label for="default_servings">Default Servings</label>
+    <div>
+      <div class="input-field col s12">
+        <input id="default_servings"
+              type="text"
+              required
+              name='default_servings'
+              [(ngModel)]="signUpUser.default_servings"
+              class="validate">
+        <label for="default_servings">Default Servings</label>
+      </div> 
     </div>
-
-    <div class="input-field col s12">
-      <input id="email"
-             type="email"
-             required
-             name='email'
-             [(ngModel)]="signUpUser.email"
-             class="validate">
-      <label for="email">Email</label>
+    <div>
+      <div class="input-field col s12">
+        <input id="email"
+               type="email"
+               required
+               name='email'
+               [(ngModel)]="signUpUser.email"
+               class="validate">
+        <label for="email">Email</label>
+      </div>
     </div>
-
-
-
-    <div class="input-field col s12">
-      <input id="password"
-             type="password"
-             required
-             name='password'
-             [(ngModel)]="signUpUser.password"
-             class="validate">
-      <label for="password">Password</label>
+    <div>
+      <div class="input-field col s12">
+        <input id="password"
+               type="password"
+               required
+               name='password'
+               [(ngModel)]="signUpUser.password"
+               class="validate">
+        <label for="password">Password</label>
+      </div> 
     </div>
-
-
-
-    <div class="input-field col s12">
-      <input id="password_confirmation"
-             type="password"
-             required
-             name='password_confirmation'
-             [(ngModel)]="signUpUser.passwordConfirmation"
-             class="validate">
-      <label for="password_confirmation">Password confirmation</label>
+    <div>
+      <div class="input-field col s12">
+        <input id="password_confirmation"
+               type="password"
+               required
+               name='password_confirmation'
+               [(ngModel)]="signUpUser.passwordConfirmation"
+               class="validate">
+        <label for="password_confirmation">Password confirmation</label>
+      </div>
     </div>
 
     <span *ngIf="signUpUser.password != signUpUser.passwordConfirmation"
@@ -82,15 +85,14 @@
       Passwords must match
     </span>
 
-
-    <div class="col s12">
-
-      <button type="submit"
-              [disabled]="!(f.valid) || !(signUpUser.password == signUpUser.passwordConfirmation)"
-              class="waves-effect waves-light btn blue right">
-        Sign up
-      </button>
-
+    <div>
+      <div class="col s12">
+        <button type="submit"
+                [disabled]="!(f.valid) || !(signUpUser.password == signUpUser.passwordConfirmation)"
+                class="waves-effect waves-light btn right">
+          Sign up
+        </button>
+      </div>
     </div>
 
   </div>

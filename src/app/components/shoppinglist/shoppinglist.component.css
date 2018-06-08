@@ -1,8 +1,69 @@
+h1 {
+  font-size: 32px;
+}
+  
+h2 {
+  font-size: 24px;
+  text-align: center; 
+}
+
 .h4 {
-    text-align: center;
-    
+  text-align: center;  
 }
 
 .container {
-    text-aign: center; 
+  text-align: center; 
+}
+
+mat-sidenav-container {
+  top: 64px !important;
+  position: relative;
+  height: 100%;
+}  
+
+#button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.shopping-list-sidenav {
+  padding: 20px;
+  background: #d3d4d6;
+}
+
+#listname {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#sl-name {
+  padding-bottom: 3px;
+}
+
+#sl-meal_plan {
+  padding-top: 3px;   
+}
+
+button {
+  color: white;
+  background-color: #B8AEB8;
+}
+
+button:hover, button:focus {
+  color: white;
+  background-color: #807980;
+}
+
+.card {
+  background-color: #e0efef;
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px #888888;
+}
+
+
+.mat-button {
+  color: white;
 }

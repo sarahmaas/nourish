@@ -1,4 +1,5 @@
-import {JsonObject, JsonProperty} from "json2typescript";
+import {JsonObject, JsonProperty} from 'json2typescript';
+
 @JsonObject
 export class Measure {
 
@@ -9,9 +10,4 @@ export class Measure {
   @JsonProperty('name', String)
   name: string = undefined;
 
-  /*
-  constructor(values: Object = {}) {
-    Object.assign(this, values);
-  }
-*/
 }
