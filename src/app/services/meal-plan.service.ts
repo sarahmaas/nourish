@@ -29,7 +29,7 @@ export class MealPlanService implements OnInit {
 
   // GET /users/:id/meal_plans
   public getUserMealPlans(): Observable<MealPlan[]> {
-    return this.authTokenService.get('/users/' + this.userID + '/meal_plans')
+    return this.authTokenService.get('users/' + this.userID + '/meal_plans')
     .map( res => {
       return this.jsonConvert.deserialize(res.json(), MealPlan);
     }).catch(this.handleError);
