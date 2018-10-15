@@ -5,7 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatInputModule, MatFormField, MatAutocompleteModule, MatAutocompleteTrigger } from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 import { TitleCasePipe } from '../../pipes/title-case.pipe';

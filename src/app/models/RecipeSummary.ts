@@ -7,8 +7,7 @@ import { RecipeUser } from './RecipeUser';
 export class RecipeSummary {
 
   @JsonProperty('id', Number)
-  _id: number = undefined;
-  get id() { return this._id; }
+  id: number = undefined;
 
   @JsonProperty('title', String)
   title: string = undefined;

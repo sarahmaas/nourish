@@ -2,38 +2,30 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
-import { Angular2TokenService } from 'angular2-token';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from './auth.service';
 
-import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
-import { Observable } from 'rxjs/Observable';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 import { Measure } from '../models/Measure';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class MeasureService {
 
-  private jsonConvert: JsonConvert;
 
-  constructor(private authTokenService: Angular2TokenService,
+  constructor(private http: HttpClient,
               private authService: AuthService ) {
-    this.jsonConvert = new JsonConvert();
   }
 
   /*
    * get all measures
    */
 
-  getAllMeasures(): Observable<Measure[]> {
-
-    return this.authTokenService.get('/measures').map( res => {
-      return this.jsonConvert.deserialize(res.json(), Measure);
-    }).catch(this.handleError);
-
+  getAllMeasures() {
+    return this.http.get<Measure[]>('/measures')
+      .pipe(retry(3), catchError(this.handleError));
   }
 
   /*
@@ -41,18 +33,17 @@ export class MeasureService {
    */
 
   getMeasureByID(measureID: number): Observable<Measure> {
-    return this.authTokenService.get('/measures/' + measureID).map( res => {
-      return this.jsonConvert.deserialize(res.json(), Measure);
-    });
+    return this.http.get<Measure>(`/measures/${measureID}`)
+      .pipe(retry(3), catchError(this.handleError));
   }
 
   /*
    * error handling function for Shopping List service
    */
 
-  private handleError (error: Response | any) {
+  private handleError (error: HttpErrorResponse | any) {
     console.error('ShoppingListService::handleError', error);
-    return Observable.throw(error);
+    return throwError(error);
   }
 
 }

@@ -1,4 +1,4 @@
-import { RegisterData } from 'angular2-token';
+import { RegisterData } from 'angular-token';
 
 // register.interface.ts
 // this should always match the API POST /auth
@@ -10,7 +10,7 @@ export interface RegisterUser extends RegisterData {
   last_name: string;
   default_servings: string;
   image: string;
-  email: string;
+  login: string;
   password: string;
   passwordConfirmation: string;
   confirmSuccessUrl: string;

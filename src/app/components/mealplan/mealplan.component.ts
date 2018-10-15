@@ -1,14 +1,12 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
 
 import { MatInputModule, MatFormField, MatAutocompleteModule, MatAutocompleteTrigger,
          MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Validators, FormGroup, FormArray, FormBuilder,
          FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 
-import { AuthService } from '../../services/auth.service';
-import { Angular2TokenService } from 'angular2-token';
+// import { AuthService } from '../../services/auth.service';
+// import { AngularTokenService } from 'angular-token';
 
 import { MealPlanService } from '../../services/meal-plan.service';
 

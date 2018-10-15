@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
-
 import { appConfig } from '../../app.constants';
 
 import { IngredientShoppingList } from '../../models/IngredientShoppingList';

@@ -4,7 +4,7 @@ import { MatSelectModule, MatInputModule, MatFormField, MatAutocompleteModule,
          MatAutocompleteTrigger, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth.service';

@@ -21,7 +21,7 @@ export class AuthDialogComponent implements OnInit {
     if (e.signedIn) {
       this.closeDialog();
     } else {
-      alert(e.err.json().errors[0]);
+      alert(e.err);
     }
   }
 
@@ -29,7 +29,7 @@ export class AuthDialogComponent implements OnInit {
     if (e.signedUp) {
       this.closeDialog();
     } else {
-      alert(e.err.json().errors.full_messages[0]);
+      alert(e.err);
     }
   }
 

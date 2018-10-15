@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
-
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from '../../models/Recipe';
 
-import 'rxjs/add/operator/map';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

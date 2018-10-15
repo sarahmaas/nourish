@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginFormComponent implements OnInit {
 
   signInUser = {
-    email: '',
+    login: '',
     password: ''
   };
 
@@ -29,7 +29,10 @@ export class LoginFormComponent implements OnInit {
         },
         err => {
           console.log('err:', err);
-          this.formResult.emit({signedIn: false, err});
+          this.formResult.emit({
+            signedIn: false,
+            err: `${err.status} ${err.statusText}`
+          });
         }
     );
 

@@ -4,8 +4,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 export class DietaryRestriction {
 
   @JsonProperty('id', Number)
-  _id: number = undefined;
-  get id() { return this._id; }
+  id: number = undefined;
 
   @JsonProperty('name', String)
   name: string = undefined;

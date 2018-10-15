@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { AuthService } from '../../services/auth.service';
 
 import { RegisterUser } from '../../register.interface';
@@ -16,7 +16,7 @@ export class RegisterFormComponent implements OnInit {
     last_name: '',
     default_servings: '2',
     image: '',
-    email: '',
+    login: '',
     password: '',
     passwordConfirmation: '',
     confirmSuccessUrl: ''
@@ -24,7 +24,7 @@ export class RegisterFormComponent implements OnInit {
 
   @Output() formResult = new EventEmitter<any>();
 
-  constructor(private tokenAuthService: Angular2TokenService, private authService: AuthService) {}
+  constructor(private tokenAuthService: AngularTokenService, private authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -34,21 +34,24 @@ export class RegisterFormComponent implements OnInit {
         (res) => {
           if (res.status === 200) {
             this.formResult.emit({signedUp: true, res});
-            this.signIn(this.signUpUser.email, this.signUpUser.password);
+            this.signIn(this.signUpUser.login, this.signUpUser.password);
           }
 
         },
 
         (err) => {
-          console.log(err.json());
-          this.formResult.emit({signedUp: false, err});
+          console.log(err);
+          this.formResult.emit({
+            signedUp: false,
+            err: `${err.status} ${err.statusText}`
+          });
         }
     );
 
   }
 
-  signIn(email, password) {
-    this.authService.logInUser({email, password}).subscribe(
+  signIn(login, password) {
+    this.authService.logInUser({login, password}).subscribe(
       res => {
         if (res.status === 200) {
           this.formResult.emit({signedIn: true, res});

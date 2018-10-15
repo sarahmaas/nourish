@@ -17,9 +17,9 @@ import { ValidateMealPlanName } from '../../validators/mealplan-name-validator';
 
 import { TitleCasePipe } from '../../pipes/title-case.pipe';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Subscription } from 'rxjs/Subscription';
+// import { Subscription } from 'rxjs/Subscription';
 
 import { ShoppingList } from '../../models/ShoppingList';
 import { IngredientShoppingList } from '../../models/IngredientShoppingList';

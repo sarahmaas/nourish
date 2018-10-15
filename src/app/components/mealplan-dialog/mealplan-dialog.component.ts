@@ -17,9 +17,9 @@ import { ValidateRecipeType } from '../../validators/recipe-type-validator.valid
 
 import { TitleCasePipe } from '../../pipes/title-case.pipe';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Subscription } from 'rxjs/Subscription';
+// import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-mealplan-dialog',

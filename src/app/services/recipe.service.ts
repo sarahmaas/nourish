@@ -1,27 +1,23 @@
 // https://www.sitepoint.com/angular-rxjs-create-api-service-rest-backend/
 
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { Http } from '@angular/http';
-import { Angular2TokenService     } from 'angular2-token';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from './auth.service';
+
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+
 import { Recipe } from '../models/Recipe';
-import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 import { IngredientRecipe } from '../models/IngredientRecipe';
 
 @Injectable()
 export class RecipeService {
 
   private userID: number;
-  private jsonConvert: JsonConvert;
+  private retries = 3;
 
-  constructor(private authTokenService: Angular2TokenService) {
-    this.userID = this.authTokenService.currentUserData.id;
-    this.jsonConvert = new JsonConvert();
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.userID = this.authService.getUser().id;
   }
 
   /*
@@ -29,26 +25,17 @@ export class RecipeService {
    */
 
   public getUserRecipes(userID: number = this.userID): Observable<Recipe[]> {
-    return this.authTokenService.get('users/' + userID + '/recipes').map(
-      res => {
-          return this.jsonConvert.deserialize(res.json(), Recipe);
-        }).catch(this.handleError);
+    return this.http.get<Recipe[]>(`users/${userID}/recipes`)
+      .pipe(retry(this.retries), catchError(this.handleError));
   }
 
  /*
   * GET /recipes/:id
   */
 
-  public getUserRecipeById(recipeID: number) {
-
-    return this.authTokenService.get('recipes/' + recipeID)
-    .map(
-      res => {
-        let recipe: Recipe;
-        recipe = this.jsonConvert.deserialize(res.json(), Recipe);
-        return recipe;
-      }).catch(this.handleError);
-
+  public getUserRecipeById(recipeID: number): Observable<Recipe> {
+    return this.http.get<Recipe>(`recipes/${recipeID}`)
+      .pipe(retry(this.retries), catchError(this.handleError));
   }
 
   /*
@@ -56,12 +43,8 @@ export class RecipeService {
    */
 
   public getAllRecipes(): Observable<Recipe[]> {
-
-    return this.authTokenService.get('recipes').map(
-      res => {
-        return this.jsonConvert.deserialize(res.json(), Recipe);
-      }).catch(this.handleError);
-
+    return this.http.get<Recipe[]>('recipes')
+      .pipe(retry(this.retries), catchError(this.handleError));
   }
 
  /*
@@ -73,11 +56,8 @@ export class RecipeService {
     const recipe_request = this.mapModelToRequest(recipe);
 
     console.log(recipe_request);
-    return this.authTokenService.post('users/' + this.userID + '/recipes', recipe_request)
-    .map( res => {
-        console.log(res.json());
-        return this.jsonConvert.deserialize(res.json(), Recipe);
-      }).catch(this.handleError);
+    return this.http.post<Recipe>(`users/${this.userID}/recipes`, recipe_request)
+      .pipe(retry(this.retries), catchError(this.handleError));
 
   }
 
@@ -87,14 +67,8 @@ export class RecipeService {
 
   private updateRecipe(recipe_id: number, recipe_request: any) {
 
-    return this.authTokenService.put('recipes/' + recipe_id, recipe_request).map(
-      res => {
-        console.log(res);
-        if ( res && res.status < 300 ) {
-          console.log('returned from update list item');
-          return { status: res.status, json: res };
-        }
-      }).catch(this.handleError);
+    return this.http.put(`recipes/${recipe_id}`, recipe_request)
+      .pipe(retry(this.retries), catchError(this.handleError));
 
   }
 
@@ -144,24 +118,17 @@ export class RecipeService {
   */
 
   public deleteRecipe(recipeID: number): Observable<null> {
-
-    return this.authTokenService.delete('recipes/' + recipeID)
-    .map(res => {
-      if (res && res.status < 300) {
-        console.log(res.json());
-        return { status: res.status, json: res };
-      }
-    }).catch(this.handleError);
-
+    return this.http.delete<null>(`recipes/${recipeID}`)
+      .pipe(retry(this.retries), catchError(this.handleError));
   }
 
   /*
    * handle error
    */
 
-  private handleError (error: Response | any) {
+  private handleError (error: HttpErrorResponse | any) {
     console.error('RecipeService::handleError', error);
-    return Observable.throw(error);
+    return throwError(error);
   }
 
   /*

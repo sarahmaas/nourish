@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterializeAction } from 'angular2-materialize';
@@ -11,7 +11,5 @@ import { MaterializeAction } from 'angular2-materialize';
 })
 export class AppComponent {
 
-  constructor(private authToken: Angular2TokenService) {
-    this.authToken.init(environment.token_auth_config);
-  }
+  constructor() {  }
 }

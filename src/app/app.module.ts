@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AbstractControl,
          FormsModule,
          ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule,
          MatButtonModule,
@@ -24,10 +23,13 @@ import { MatAutocompleteModule,
 import { MatTabsModule } from '@angular/material/tabs';
 
 // external libraries
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenModule } from 'angular-token';
 import { CalendarModule } from 'angular-calendar';
 import { MaterializeModule } from 'angular2-materialize';
 import { SlideshowModule } from 'ng-simple-slideshow';
+
+// config
+import { environment } from '../environments/environment';
 
 // app
 import { AppComponent } from './app.component';
@@ -131,8 +133,8 @@ import { RecipeNameValidator } from './validators/recipe-name-validator.validato
     MatTabsModule,
     MatAutocompleteModule,
     MaterialAppModule,
-    HttpModule,
     HttpClientModule,
+    AngularTokenModule.forRoot(environment.token_auth_config),
     AppRoutingModule,
     ReactiveFormsModule,
     MaterializeModule,
@@ -144,7 +146,7 @@ import { RecipeNameValidator } from './validators/recipe-name-validator.validato
     MatSelectModule
   ],
   providers: [
-    Angular2TokenService,
+    AngularTokenModule,
     AuthService,
     AuthGuard,
     BrowseComponent,
