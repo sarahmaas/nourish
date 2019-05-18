@@ -2,10 +2,13 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { AuthService } from './auth.service';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+
+import { environment } from '../../environments/environment';
+
+import { AuthService } from './auth.service';
 
 import { Recipe } from '../models/Recipe';
 import { IngredientRecipe } from '../models/IngredientRecipe';
@@ -15,6 +18,7 @@ export class RecipeService {
 
   private userID: number;
   private retries = 3;
+  private apiBase = environment.token_auth_config.apiBase;
 
   constructor(private http: HttpClient, private authService: AuthService) {
     this.userID = this.authService.getUser().id;
@@ -25,7 +29,7 @@ export class RecipeService {
    */
 
   public getUserRecipes(userID: number = this.userID): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`users/${userID}/recipes`)
+    return this.http.get<Recipe[]>(`${this.apiBase}/users/${userID}/recipes`)
       .pipe(retry(this.retries), catchError(this.handleError));
   }
 
@@ -34,7 +38,7 @@ export class RecipeService {
   */
 
   public getUserRecipeById(recipeID: number): Observable<Recipe> {
-    return this.http.get<Recipe>(`recipes/${recipeID}`)
+    return this.http.get<Recipe>(`${this.apiBase}/recipes/${recipeID}`)
       .pipe(retry(this.retries), catchError(this.handleError));
   }
 
@@ -43,7 +47,7 @@ export class RecipeService {
    */
 
   public getAllRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>('recipes')
+    return this.http.get<Recipe[]>(`${this.apiBase}/recipes`)
       .pipe(retry(this.retries), catchError(this.handleError));
   }
 
@@ -56,7 +60,7 @@ export class RecipeService {
     const recipe_request = this.mapModelToRequest(recipe);
 
     console.log(recipe_request);
-    return this.http.post<Recipe>(`users/${this.userID}/recipes`, recipe_request)
+    return this.http.post<Recipe>(`${this.apiBase}/users/${this.userID}/recipes`, recipe_request)
       .pipe(retry(this.retries), catchError(this.handleError));
 
   }
@@ -67,7 +71,7 @@ export class RecipeService {
 
   private updateRecipe(recipe_id: number, recipe_request: any) {
 
-    return this.http.put(`recipes/${recipe_id}`, recipe_request)
+    return this.http.put(`${this.apiBase}/recipes/${recipe_id}`, recipe_request)
       .pipe(retry(this.retries), catchError(this.handleError));
 
   }
@@ -118,7 +122,7 @@ export class RecipeService {
   */
 
   public deleteRecipe(recipeID: number): Observable<null> {
-    return this.http.delete<null>(`recipes/${recipeID}`)
+    return this.http.delete<null>(`${this.apiBase}/recipes/${recipeID}`)
       .pipe(retry(this.retries), catchError(this.handleError));
   }
 

@@ -1,6 +1,6 @@
 # Nourish
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3, now updated to 6.2.5.
 
 ## Development server
 
@@ -33,8 +33,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### set up node (nvm)
 If nvm already installed:
-`nvm install 9.11.0`
-`nvm use 9.11.0`
+`nvm install 10.10.0`
+`nvm use 10.10.0`
 
 ## AUTHORS
 Sarah Maas
